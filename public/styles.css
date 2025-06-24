@@ -1,0 +1,19 @@
+*{
+ font-family: "Poppins";
+}
+
+body {
+  font-family: "Poppins";
+  background-color: #e13a3a;
+  color: white;
+}
+.form-control {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  color: white;
+}
+.form-control:focus {
+  background-color: #1a1a1a;
+  color: white;
+  border-color: #6666ff;
+}
