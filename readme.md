@@ -3,6 +3,7 @@ A secure, privacy-focused web application that allows users to anonymously submi
 
 
 🚀 Features
+
 ✅ User Registration with email & password validation
 
 ✅ JWT-based Authentication with HttpOnly secure cookies
@@ -20,6 +21,7 @@ A secure, privacy-focused web application that allows users to anonymously submi
 ✅ Ready for deployment on Render or any Node-compatible hosting
 
 🛠️ Tech Stack
+
 Frontend: EJS, Bootstrap 5, Font Awesome
 
 Backend: Node.js, Express.js
@@ -31,6 +33,7 @@ Authentication: JWT (JSON Web Tokens), bcrypt
 Hosting Ready: Render / Vercel / Railway compatible
 
 👨‍💻 Author
+
 Ashwin Parashar
 Full Stack Developer | Cybersecurity Enthusiast
 
