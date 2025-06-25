@@ -43,28 +43,42 @@ router.post('/register', async (req, res) => {
   try {
     const user = new User({ name, email, password });
     await user.save();
+    console.log("✅ User registered:", user);
     res.redirect('/login');
-  } catch {
-    res.send("Email already exists or validation failed.");
+  } catch (err) {
+    console.error("❌ Registration failed:", err.message);
+    res.render('register', { error: 'Email already exists or validation failed.' });
   }
 });
+
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.send("Invalid credentials.");
+    if (!user) {
+      console.log("❌ User not found for:", email);
+      return res.render('login', { error: 'Invalid email or password.' });
     }
+
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      console.log("❌ Invalid password for:", email);
+      return res.render('login', { error: 'Invalid email or password.' });
+    }
+
     const token = jwt.sign({ name: user.name, email: user.email }, process.env.JWT_SECRET, {
       expiresIn: '1d'
     });
+
     res.cookie('token', token, { httpOnly: true });
     res.redirect('/secrets');
-  } catch {
-    res.send("Login failed.");
+  } catch (err) {
+    console.error("❌ Login error:", err.message);
+    res.render('login', { error: 'Login failed due to server error.' });
   }
 });
+
 
 module.exports = router;
 const Secret = require('../models/Secret');
